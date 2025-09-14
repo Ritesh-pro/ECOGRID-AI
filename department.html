@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Dashboard - Eco Grid</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>Eco Grid</span>
+            </div>
+            <div class="nav-links">
+                <a href="#post-info" class="nav-link">Post Info</a>
+                <a href="#detect-fault" class="nav-link">Detect Fault</a>
+                <a href="#weather-broadcast" class="nav-link">Weather</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="index.html" class="nav-link">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="dashboard-hero">
+        <div class="container">
+            <h1 class="dashboard-title">Department Dashboard</h1>
+            <p class="dashboard-subtitle">Manage grid information, detect faults, and share news with users.</p>
+        </div>
+    </section>
+
+    <main class="dashboard-main container">
+        <!-- Post Info Section -->
+        <section id="post-info" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Post Information</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Broadcast Alert</h3>
+                </div>
+                <form class="dash-form" id="post-form">
+                    <div class="form-row">
+                        <div class="textarea-group">
+                            <textarea id="alert-message" placeholder="Enter alert message for users..." rows="3" required></textarea>
+                        </div>
+                        <select class="select-input" id="alert-priority" required>
+                            <option value="">Priority</option>
+                            <option value="normal">Normal</option>
+                            <option value="important">Important</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="alert-title" placeholder="Alert title..." class="input-group input" required>
+                        <button type="submit" class="auth-page-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Post Alert</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="post-feed" id="post-feed">
+                    <!-- Posts will be populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Detect Fault Section -->
+        <section id="detect-fault" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Fault Detection</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <i class="fas fa-search"></i>
+                    <h3>Grid Analysis</h3>
+                </div>
+                <form class="dash-form" id="fault-form">
+                    <div class="form-row">
+                        <input type="text" id="fault-location" placeholder="Enter location or grid ID..." class="input-group input" required>
+                        <button type="submit" class="auth-page-btn">
+                            <i class="fas fa-search"></i>
+                            <span>Analyze Grid</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="fault-results" id="fault-results">
+                    <div class="result-placeholder">Enter a location to analyze grid status...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather Broadcast Section -->
+        <section id="weather-broadcast" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Weather Broadcast</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <i class="fas fa-cloud-rain"></i>
+                    <h3>Send Weather Alerts</h3>
+                </div>
+                <form class="dash-form" id="weather-broadcast-form">
+                    <div class="form-row">
+                        <input type="text" id="weather-title" placeholder="Weather alert title..." class="input-group input" required>
+                        <select class="select-input" id="weather-severity" required>
+                            <option value="">Severity</option>
+                            <option value="normal">Normal</option>
+                            <option value="advisory">Advisory</option>
+                            <option value="warning">Warning</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <select class="select-input" id="weather-type" required>
+                            <option value="">Weather Type</option>
+                            <option value="thunderstorm">Thunderstorm</option>
+                            <option value="heavy-rain">Heavy Rain</option>
+                            <option value="snow">Snow</option>
+                            <option value="heat-wave">Heat Wave</option>
+                            <option value="cold-wave">Cold Wave</option>
+                            <option value="wind">High Winds</option>
+                            <option value="fog">Dense Fog</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="datetime-local" id="weather-valid-until" class="input-group input" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="textarea-group">
+                            <textarea id="weather-message" placeholder="Detailed weather information and recommendations..." rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="auth-page-btn">
+                            <i class="fas fa-broadcast-tower"></i>
+                            <span>Broadcast Alert</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="weather-alerts-list" id="weather-alerts-list">
+                    <!-- Weather alerts will be populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Eco Grid News</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Manage News</h3>
+                </div>
+                <form class="dash-form" id="news-form">
+                    <div class="form-row">
+                        <input type="text" id="news-title" placeholder="News headline..." class="input-group input" required>
+                        <select class="select-input" id="news-category" required>
+                            <option value="">Category</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="updates">System Updates</option>
+                            <option value="sustainability">Sustainability</option>
+                            <option value="announcements">Announcements</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="textarea-group">
+                            <textarea id="news-content" placeholder="Write news content..." rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="auth-page-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add News</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="news-list" id="news-list">
+                    <!-- News items will be populated by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Eco Grid</span>
+                </div>
+                <p>&copy; 2024 Eco Grid. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="department.js"></script>
+</body>
+</html>

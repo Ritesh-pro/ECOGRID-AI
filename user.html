@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Eco Grid</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>Eco Grid</span>
+            </div>
+            <div class="nav-links">
+                <a href="#alerts" class="nav-link">Alerts</a>
+                <a href="#consumption" class="nav-link">Consumption</a>
+                <a href="#weather" class="nav-link">Weather</a>
+                <a href="#calculator" class="nav-link">Calculator</a>
+                <a href="index.html" class="nav-link">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="dashboard-hero">
+        <div class="container">
+            <h1 class="dashboard-title">Welcome to your Eco Grid Dashboard</h1>
+            <p class="dashboard-subtitle">Monitor alerts, track consumption, check weather, and calculate savings.</p>
+        </div>
+    </section>
+
+    <main class="dashboard-main container">
+        <section id="alerts" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Real-time Alerts</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="alerts-panel">
+                <div class="alert-controls">
+                    <button class="chip active" data-filter="all">All</button>
+                    <button class="chip" data-filter="grid">Grid</button>
+                    <button class="chip" data-filter="solar">Solar</button>
+                    <button class="chip" data-filter="weather">Weather</button>
+                </div>
+                <div class="alert-list" id="alert-list">
+                    <!-- Alerts populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="consumption" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Energy Consumption</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="consumption-card">
+                <div class="consumption-stats">
+                    <div class="stat">
+                        <span class="stat-label">Today</span>
+                        <span class="stat-value" id="consumption-today">— kWh</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">This Week</span>
+                        <span class="stat-value" id="consumption-week">— kWh</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">This Month</span>
+                        <span class="stat-value" id="consumption-month">— kWh</span>
+                    </div>
+                </div>
+                <canvas id="consumption-chart" height="160"></canvas>
+            </div>
+        </section>
+
+        <section id="weather" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Weather Report</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="weather-grid">
+                <div class="weather-card" id="weather-current">
+                    <div class="weather-main">
+                        <i class="fas fa-cloud-sun"></i>
+                        <div>
+                            <h3 id="weather-temp">--°C</h3>
+                            <p id="weather-desc">Fetching weather...</p>
+                        </div>
+                    </div>
+                    <div class="weather-meta">
+                        <span id="weather-wind">Wind: -- km/h</span>
+                        <span id="weather-humidity">Humidity: --%</span>
+                        <span id="weather-uv">UV: --</span>
+                    </div>
+                </div>
+                <div class="weather-forecast" id="weather-forecast">
+                    <!-- Forecast populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Consumption Calculator</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="calculator-card">
+                <div class="calculator-grid">
+                    <div class="calc-inputs">
+                        <div class="input-row">
+                            <label>Appliance</label>
+                            <input type="text" id="appliance-name" placeholder="e.g., AC, Fridge">
+                        </div>
+                        <div class="input-row">
+                            <label>Wattage (W)</label>
+                            <input type="number" id="appliance-watts" placeholder="e.g., 800" min="1">
+                        </div>
+                        <div class="input-row">
+                            <label>Hours per day</label>
+                            <input type="number" id="appliance-hours" placeholder="e.g., 4" min="0" step="0.1">
+                        </div>
+                        <div class="input-row">
+                            <label>Cost per kWh (₹)</label>
+                            <input type="number" id="cost-per-kwh" placeholder="e.g., 7" min="0" step="0.01" value="7">
+                        </div>
+                        <button class="auth-page-btn" id="add-appliance">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Appliance</span>
+                        </button>
+                    </div>
+                    <div class="calc-results">
+                        <div class="appliance-list" id="appliance-list">
+                            <!-- Items injected by JS -->
+                        </div>
+                        <div class="totals">
+                            <div>
+                                <span class="total-label">Daily Usage</span>
+                                <span class="total-value" id="total-kwh">0.00 kWh</span>
+                            </div>
+                            <div>
+                                <span class="total-label">Estimated Cost</span>
+                                <span class="total-value" id="total-cost">₹0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Eco Grid</span>
+                </div>
+                <p>&copy; 2024 Eco Grid. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="user.js"></script>
+</body>
+</html>
+
